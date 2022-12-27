@@ -25,7 +25,7 @@ class SQLData {
 
     await database_ticket.execute('''
       CREATE TABLE ferryTicket (
-        book_id INTEGER(5) PRIMARY KEY AUTOINCREMENT NOT NULL,
+        book_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         depart_date DATE NOT NULL,
         journey TEXT NOT NULL,
         depart_route TEXT NOT NULL,
