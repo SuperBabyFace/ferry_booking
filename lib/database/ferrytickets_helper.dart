@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../models/ferryticket.dart';
+import '../models/user.dart';
 
 class FerryTicketDatabase {
   static final FerryTicketDatabase _ferryTicketDatabase = FerryTicketDatabase._internal();
@@ -123,13 +124,13 @@ class FerryTicketDatabase {
     );
     //if user already exist, snackbar show username already exist
     if (result.isNotEmpty) {
-<<<<<<< Updated upstream
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Username already exist.'), 
         duration: Duration(seconds: 5),
         ),
       );
-=======
+
       Widget okButton = TextButton(onPressed:(){}, child: Text('OK'));
       AlertDialog alert = AlertDialog(
         title: Text('Registration Unsucessful.'),
@@ -139,7 +140,7 @@ class FerryTicketDatabase {
       showDialog(context: context, builder: (BuildContext context) {
         return alert;
       });
->>>>>>> Stashed changes
+
     } 
     //insert username and password int database(Replace any that already existed)
     else {
@@ -151,11 +152,10 @@ class FerryTicketDatabase {
       print(user.username);
       print(user.password);
 
-<<<<<<< Updated upstream
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Successfully registered account')),
       );
-=======
       Widget okButton = TextButton(onPressed:(){}, child: Text('OK'));
       AlertDialog alert = AlertDialog(
         title: Text('Registration Sucessful.'),
@@ -168,7 +168,6 @@ class FerryTicketDatabase {
       // ScaffoldMessenger.of(context).showSnackBar(
       //   const SnackBar(content: Text('Successfully registered account')),
       // );
->>>>>>> Stashed changes
       Navigator.pop(context);
     }
   }
@@ -209,12 +208,9 @@ class userSaveSession {
 
   static Future setCurrentUserId(int user_id) async =>
       await _preferences!.setInt(_currentUserId, user_id);
-
-<<<<<<< Updated upstream
   static int? getCurrentUserId() => _preferences!.getInt(_currentUserId);
-=======
   static int? getUserID() => _preferences!.getInt(_currentUserId);
->>>>>>> Stashed changes
+
 }
 
 
