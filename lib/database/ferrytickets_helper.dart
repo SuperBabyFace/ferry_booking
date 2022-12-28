@@ -155,7 +155,6 @@ class FerryTicketDatabase {
     );
     print(user);
     if (result.isEmpty) {
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
             content: Text('Wrong password or username. Log in unsuccessful.')),
@@ -163,11 +162,9 @@ class FerryTicketDatabase {
     } else {
       int id = result[0]["user_id"];
       await userReference.setCurrentUserId(id);
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login Successful. Hello, ${user.username}.')),
+        SnackBar(content: Text('Login Successful. Welcome, ${user.username}.')),
       );
-      // ignore: use_build_context_synchronously
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => /*HomePage*/(user: user)),
