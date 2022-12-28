@@ -1,6 +1,10 @@
 import 'dart:convert';
 
+<<<<<<< Updated upstream
 class FerryTicket {
+=======
+class ferryTickets {
+>>>>>>> Stashed changes
 
   final int book_id;
   final String depart_date;
@@ -10,7 +14,11 @@ class FerryTicket {
   final int user_id;
 
 //initialize values
+<<<<<<< Updated upstream
   FerryTicket({
+=======
+  ferryTickets({
+>>>>>>> Stashed changes
     required this.book_id,
     required this.depart_date,
     required this.journey,
@@ -30,8 +38,13 @@ class FerryTicket {
     };
   }
 
+<<<<<<< Updated upstream
   factory FerryTicket.fromMap(Map<String, dynamic> map) {
     return FerryTicket(
+=======
+  factory ferryTickets.fromMap(Map<String, dynamic> map) {
+    return ferryTickets(
+>>>>>>> Stashed changes
       book_id: map['book_id']?.toInt() ?? 0,
       depart_date: map['depart_date'] ?? "",
       journey: map['journey'] ?? "",
@@ -44,8 +57,13 @@ class FerryTicket {
 
   //returns object as String (regarding date)
   String toJson() => json.encode(toMap());
+<<<<<<< Updated upstream
   factory FerryTicket.fromJson(String source) =>
       FerryTicket.fromMap(json.decode(source));
+=======
+  factory ferryTickets.fromJson(String source) =>
+      ferryTickets.fromMap(json.decode(source));
+>>>>>>> Stashed changes
 
 
   @override
