@@ -1,10 +1,17 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:ferry_booking/pages/splashPage.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
+
 import '../models/ferryticket.dart';
 import '../models/user.dart';
+import '../pages/displayFerryBooking.dart';
+import '../pages/login_screen.dart';
+import '../database/userSession.dart';
 
 class FerryTicketDatabase {
   static final FerryTicketDatabase _ferryTicketDatabase = FerryTicketDatabase._internal();
@@ -26,7 +33,7 @@ class FerryTicketDatabase {
       path,
       onCreate: _onCreate,
       version: 2,
-      onConfigure: (db) async => await db.execute('PRAGMA foreign_keys = ON')
+      onConfigure: (db) async => await db.execute('PRAGMA foreign_keys = ON'),
     );
   }
 
@@ -34,8 +41,8 @@ class FerryTicketDatabase {
     await db.execute(
       '''CREATE TABLE users(
         user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        f_name TEXT,
-        l_name TEXT,
+        firstname TEXT,
+        lastname TEXT,
         username TEXT,
         password TEXT,
         mobilehp TEXT)'''
@@ -46,8 +53,10 @@ class FerryTicketDatabase {
         depart_date TEXT,
         journey TEXT,
         depart_route TEXT,
+        dest_route TEXT,
         user_id INTEGER, 
-        FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE SET NULL''');
+        FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE SET NULL)'''
+);
   }
 
   //insert ferry ticket onto database. 
@@ -92,14 +101,14 @@ class FerryTicketDatabase {
   Future<User> user(int id) async {
     final db = await _ferryTicketDatabase.database;
     final List<Map<String, dynamic>> maps = await db.query(
-      'user', where: 'id = ?', whereArgs: [id]);
+      'users', where: 'id = ?', whereArgs: [id]);
     return User.fromMap(maps[0]);
   }
 
   //get user from database
   Future<List<User>> getUser() async {
     final db = await _ferryTicketDatabase.database;
-    final List<Map<String, dynamic>> maps = await db.query('user');
+    final List<Map<String, dynamic>> maps = await db.query('users');
     return List.generate(maps.length, (index) => User.fromMap(maps[index]));
   }
 
@@ -107,45 +116,33 @@ class FerryTicketDatabase {
   Future<void> updateUser(User user) async {
     final db = await _ferryTicketDatabase.database;
     await db.update(
-      'user',
+      'users',
       user.toMap(),
       where: 'id = ?',
       whereArgs: [user.user_id],
     );
   }
-
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //register user
   Future<void> registerUser(User user, BuildContext context) async {
     final db = await _ferryTicketDatabase.database;
     final List<Map<String, dynamic>> result = await db.query(
-      'user',
+      'users',
       where: 'username = ?',
       whereArgs: [user.username],
     );
     //if user already exist, snackbar show username already exist
     if (result.isNotEmpty) {
-
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Username already exist.'), 
-        duration: Duration(seconds: 5),
         ),
       );
-
-      Widget okButton = TextButton(onPressed:(){}, child: Text('OK'));
-      AlertDialog alert = AlertDialog(
-        title: Text('Registration Unsucessful.'),
-        content: Text('Username already exist. Please pick another.'),
-        actions: [okButton],
-      );
-      showDialog(context: context, builder: (BuildContext context) {
-        return alert;
-      });
-
     } 
     //insert username and password int database(Replace any that already existed)
     else {
       await db.insert(
-        'user',
+        'users',
         user.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
@@ -153,29 +150,20 @@ class FerryTicketDatabase {
       print(user.password);
 
 
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Successfully registered account')),
       );
-      Widget okButton = TextButton(onPressed:(){}, child: Text('OK'));
-      AlertDialog alert = AlertDialog(
-        title: Text('Registration Sucessful.'),
-        content: Text('Your account has been created.'),
-        actions: [okButton],
-      );
-      showDialog(context: context, builder: (BuildContext context) {
-        return alert;
-      });
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   const SnackBar(content: Text('Successfully registered account')),
-      // );
-      Navigator.pop(context);
+      // ignore: use_build_context_synchronously
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage(title: 'title')));
     }
   }
-
+  //////////////////////////////////////////////////////////////
+  //user login
   Future<User?> userLogin(User user, BuildContext context) async {
     final db = await _ferryTicketDatabase.database;
     final List<Map<String, dynamic>> result = await db.query(
-      'user',
+      'users',
       where: 'username = ? and password = ?',
       whereArgs: [user.username, user.password],
     );
@@ -193,25 +181,13 @@ class FerryTicketDatabase {
       );
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => /*HomePage*/(user: user)),
+        MaterialPageRoute(builder: (context) => displayFerryBooking(user: user)),
       );
     }
   }
 }
 
-class userSaveSession {
-  static SharedPreferences? _preferences;
-  static const _currentUserId = "currentUserId";
-
-  static Future init() async =>
-      _preferences = await SharedPreferences.getInstance();
-
-  static Future setCurrentUserId(int user_id) async =>
-      await _preferences!.setInt(_currentUserId, user_id);
-  static int? getCurrentUserId() => _preferences!.getInt(_currentUserId);
-  static int? getUserID() => _preferences!.getInt(_currentUserId);
-
-}
+// ignore: camel_case_types
 
 
 

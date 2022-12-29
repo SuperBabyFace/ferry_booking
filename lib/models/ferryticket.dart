@@ -1,10 +1,8 @@
 import 'dart:convert';
 
-
 class FerryTicket {
 
-class ferryTickets {
-  final int book_id;
+  final int? book_id;
   final String depart_date;
   final String journey;
   final String depart_route;
@@ -12,10 +10,8 @@ class ferryTickets {
   final int user_id;
 
 //initialize values
-  FerryTicket()
-
-  ferryTickets({
-    required this.book_id,
+  FerryTicket({
+    this.book_id,
     required this.depart_date,
     required this.journey,
     required this.depart_route,
@@ -34,11 +30,8 @@ class ferryTickets {
     };
   }
 
-<<<<<<< Updated upstream
   factory FerryTicket.fromMap(Map<String, dynamic> map) {
     return FerryTicket(
-  factory ferryTickets.fromMap(Map<String, dynamic> map) {
-    return ferryTickets(
       book_id: map['book_id']?.toInt() ?? 0,
       depart_date: map['depart_date'] ?? "",
       journey: map['journey'] ?? "",
@@ -53,9 +46,6 @@ class ferryTickets {
   String toJson() => json.encode(toMap());
   factory FerryTicket.fromJson(String source) =>
       FerryTicket.fromMap(json.decode(source));
-  factory ferryTickets.fromJson(String source) =>
-      ferryTickets.fromMap(json.decode(source));
-
 
 
   @override
@@ -70,4 +60,5 @@ class ferryTickets {
       user_id: $user_id)''';
   }
 
-)}}}
+}
+

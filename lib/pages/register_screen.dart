@@ -1,10 +1,13 @@
-import 'package:email_validator/email_validator.dart';
+import 'package:ferry_booking/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:ferry_booking/pages/login_screen.dart';
 
+import '../models/user.dart';
+import '../database/ferrytickets_helper.dart';
+
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const RegisterPage({Key? key}) : super(key: key);
+  
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -12,12 +15,18 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  var rememberValue = false;
+  final FerryTicketDatabase _ferryTicketDatabase = FerryTicketDatabase();
+  final TextEditingController _fnameController = TextEditingController();
+  final TextEditingController _lnameController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: kWhiteColor,
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -42,9 +51,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     children: [
                       Expanded(
                         child: TextFormField(
-                          validator: (value) => EmailValidator.validate(value!)
-                              ? null
-                              : "Please enter a valid email",
+                          controller: _fnameController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your First Name';
+                            }
+                            return null;
+                          },
                           maxLines: 1,
                           decoration: InputDecoration(
                             hintText: 'First name',
@@ -60,9 +73,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       Expanded(
                         child: TextFormField(
-                          validator: (value) => EmailValidator.validate(value!)
-                              ? null
-                              : "Please enter a valid email",
+                          controller: _lnameController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your Last Name';
+                            }
+                            return null;
+                          },
                           maxLines: 1,
                           decoration: InputDecoration(
                             hintText: 'Last name',
@@ -79,13 +96,17 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 20,
                   ),
                   TextFormField(
-                    validator: (value) => EmailValidator.validate(value!)
-                        ? null
-                        : "Please enter a valid email",
+                    controller: _usernameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your username';
+                      }
+                      return null;
+                    },
                     maxLines: 1,
                     decoration: InputDecoration(
-                      hintText: 'Enter your email',
-                      prefixIcon: const Icon(Icons.email),
+                      hintText: 'Enter your username',
+                      prefixIcon: const Icon(Icons.account_circle),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -95,6 +116,24 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 20,
                   ),
                   TextFormField(
+                    controller: _phoneController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your phone number';
+                      }
+                      return null;
+                    },
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.numbers),
+                      hintText: 'Enter your phone number',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  TextFormField(
+                    controller: _passwordController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
@@ -111,12 +150,22 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                   ),
+                  
                   const SizedBox(
                     height: 20,
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        User user = User (
+                          firstname: _fnameController.text,
+                          lastname: _lnameController.text,
+                          username: _usernameController.text,
+                          password: _passwordController.text,
+                          mobilehp: _phoneController.text,
+                        );
+                        _ferryTicketDatabase.registerUser(user, context);
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),

@@ -1,39 +1,43 @@
 import 'dart:convert';
 
 class User {
-  //final int? id;
-  final String firstname;
-  final String lastname;
-  final String email;
+  final int? user_id;
+  final String? firstname;
+  final String? lastname;
+  final String username;
   final String password;
+  final String? mobilehp;
 
   User({
-    //this.id,
-    required this.firstname,
-    required this.lastname,
-    required this.email,
+    this.user_id,
+    this.firstname,
+    this.lastname,
+    required this.username,
     required this.password,
+    this.mobilehp
   });
   // Convert a Brand into a Map. The keys must correspond to the names of the
   // columns in the database.
-  
+
   Map<String, dynamic> toMap() {
     return {
-      //'id': id,
-      'first name': firstname,
-      'last name': lastname,
-      'email': email,
+      'user_id': user_id,
+      'firstname': firstname,
+      'lastname': lastname,
+      'username': username,
       'password': password,
+      'mobilehp': mobilehp
     };
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      //id: map['id']?.toInt() ?? 0,
-      firstname: map['first name'] ?? '',
-      lastname: map['last name'] ?? '',
-      email: map['email'] ?? '',
-      password: map['password'] ?? '',
+      user_id: map['user_id']?.toInt() ?? 0,
+      firstname: map['firstname'] ?? "",
+      lastname: map['lastname'] ?? "",
+      username: map['username'] ?? "",
+      password: map['password'] ?? "",
+      mobilehp: map['mobilehp'] ?? "",
     );
   }
   String toJson() => json.encode(toMap());
@@ -41,7 +45,13 @@ class User {
       User.fromMap(json.decode(source));
   // Implement toString to make it easier to see information about
   // each brandd when using the print statement.
+
   @override
-  String toString() =>
-      'UserPage( name: $firstname,firstname: $lastname,lastname: $email,email: $password)';
+  String toString() { return
+      '''User( 
+      user_id: $user_id,
+      firstname: $firstname,
+      lastname: $lastname,
+      username: $username,
+      password: $password)''';}
 }

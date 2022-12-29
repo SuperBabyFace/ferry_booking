@@ -1,7 +1,12 @@
+import 'package:ferry_booking/pages/login_screen.dart';
+import 'package:ferry_booking/pages/splashPage.dart';
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
+import '../pages/login_screen.dart';
+import '../database/userSession.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await userSaveSession.init();
   runApp(const MyApp());
 }
 
@@ -25,14 +30,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: defaultColorScheme,
-        // brightness: Brightness.light,
-        primarySwatch: Colors.blue,
-      ),
-      home: const LoginPage(title: 'Login UI'),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, routes: {
+      '/': (context) => SplashPage(),
+      '/get-started': (context) => LoginPage(title: '',),
+      // '/sign-up': (context) => SignUpPage(),
+      // '/bonus': (context) => BonusPage(),
+      // '/main': (context) => MainPage(),
+      // '/sign-in': (context) => SignInPage(),
+    });
   }
 }

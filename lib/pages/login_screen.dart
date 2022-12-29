@@ -1,6 +1,10 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:ferry_booking/register_screen.dart';
+import 'register_screen.dart';
+
+import '../database/ferrytickets_helper.dart';
+import '../models/user.dart';
+import '../theme/theme.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
@@ -12,12 +16,15 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  var rememberValue = false;
+   final FerryTicketDatabase _ferryTicketDatabase = FerryTicketDatabase();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: kWhiteColor,
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -31,13 +38,17 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: [
                   TextFormField(
-                    validator: (value) => EmailValidator.validate(value!)
-                        ? null
-                        : "Please enter a valid email",
+                    controller: usernameController,
+                    validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your Username';
+                            }
+                            return null;
+                          },
                     maxLines: 1,
                     decoration: InputDecoration(
-                      hintText: 'Enter your email',
-                      prefixIcon: const Icon(Icons.email),
+                      hintText: 'Enter your username',
+                      prefixIcon: const Icon(Icons.person_outline_outlined),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -47,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 20,
                   ),
                   TextFormField(
+                    controller: passwordController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
@@ -63,18 +75,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  CheckboxListTile(
-                    title: const Text("Remember me"),
-                    contentPadding: EdgeInsets.zero,
-                    value: rememberValue,
-                    activeColor: Theme.of(context).colorScheme.primary,
-                    onChanged: (newValue) {
-                      setState(() {
-                        rememberValue = newValue!;
-                      });
-                    },
-                    controlAffinity: ListTileControlAffinity.leading,
-                  ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const RegisterPage(title: 'Register UI'),
+                                  const RegisterPage(),
                             ),
                           );
                         },
@@ -98,7 +98,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        if (_formKey.currentState!.validate()) {
+                          User user = User (
+                            username: usernameController.text,
+                            password: passwordController.text);
+                          _ferryTicketDatabase.userLogin(user, context);
+                        }
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
