@@ -26,6 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kWhiteColor,
       body: Container(
         padding: const EdgeInsets.all(20),
@@ -132,6 +133,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   TextFormField(
                     controller: _passwordController,
                     validator: (value) {
@@ -150,7 +154,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                   ),
-                  
                   const SizedBox(
                     height: 20,
                   ),

@@ -8,7 +8,7 @@ import '../models/user.dart';
 import '../models/ferryticket.dart';
 import '../widgets/viewFerry.dart';
 import '../database/userSession.dart';
-
+import '../widgets/bottomNavigationbar.dart';
 
 
 class displayFerryBooking extends StatefulWidget {
