@@ -5,7 +5,6 @@ import '../database/ferrytickets_helper.dart';
 import '../models/user.dart';
 import '../theme/theme.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -16,10 +15,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-   final FerryTicketDatabase _ferryTicketDatabase = FerryTicketDatabase();
+  final FerryTicketDatabase _ferryTicketDatabase = FerryTicketDatabase();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +39,11 @@ class _LoginPageState extends State<LoginPage> {
                   TextFormField(
                     controller: usernameController,
                     validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your Username';
-                            }
-                            return null;
-                          },
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your Username';
+                      }
+                      return null;
+                    },
                     maxLines: 1,
                     decoration: InputDecoration(
                       hintText: 'Enter your username',
@@ -88,12 +86,15 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const RegisterPage(),
+                              builder: (context) => const RegisterPage(),
                             ),
                           );
                         },
-                        child: const Text('Create an account'),
+                        child: const Text(
+                          'Create an account',
+                          style:
+                              TextStyle(color: Color.fromARGB(255, 1, 85, 57)),
+                        ),
                       ),
                     ],
                   ),
@@ -101,14 +102,15 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         if (_formKey.currentState!.validate()) {
-                          User user = User (
-                            username: usernameController.text,
-                            password: passwordController.text);
+                          User user = User(
+                              username: usernameController.text,
+                              password: passwordController.text);
                           _ferryTicketDatabase.userLogin(user, context);
                         }
                       }
                     },
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 1, 85, 57),
                       padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
                     ),
                     child: const Text(

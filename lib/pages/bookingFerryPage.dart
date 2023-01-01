@@ -7,7 +7,6 @@ import '../models/ferryPlaces.dart';
 import '../models/ferryticket.dart';
 import '../widgets/bottomNavigationbar.dart';
 
-
 class order_page extends StatefulWidget {
   const order_page({Key? key, this.ferryTicket}) : super(key: key);
   final FerryTicket? ferryTicket;
@@ -31,20 +30,18 @@ class _OderPageState extends State<order_page> {
     super.initState();
     if (widget.ferryTicket != null) {
       _getDate.text = widget.ferryTicket!.depart_date;
-      _selectedDeparture = ferryDeparture.indexOf(widget.ferryTicket!.depart_route);
+      _selectedDeparture =
+          ferryDeparture.indexOf(widget.ferryTicket!.depart_route);
       _selectedDestination =
           ferryDestination.indexOf(widget.ferryTicket!.dest_route);
     }
   }
-
-
 
   Future<void> _onSave() async {
     int id;
     final depature = ferryDeparture[_selectedDeparture];
     final destination = ferryDestination[_selectedDestination];
     final journeys = _journey.name;
-    
 
     widget.ferryTicket == null
         ? await _ferryTicketDatabase.insertFerryTicket(

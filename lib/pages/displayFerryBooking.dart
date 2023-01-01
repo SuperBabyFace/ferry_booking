@@ -10,7 +10,6 @@ import '../widgets/viewFerry.dart';
 import '../database/userSession.dart';
 import '../widgets/bottomNavigationbar.dart';
 
-
 class displayFerryBooking extends StatefulWidget {
   const displayFerryBooking({Key? key, required this.user}) : super(key: key);
   final User user;
@@ -34,7 +33,10 @@ class _DisplayPageState extends State<displayFerryBooking> {
       length: 1,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Ferry Tickets'),
+          backgroundColor: Color.fromARGB(255, 1, 85, 57),
+          title: const Text(
+            'Ferry Tickets',
+          ),
           centerTitle: true,
           bottom: const TabBar(
             tabs: [
@@ -76,6 +78,7 @@ class _DisplayPageState extends State<displayFerryBooking> {
             },
             heroTag: 'addFerryTicket',
             child: const Icon(Icons.add_circle_rounded),
+            backgroundColor: Color.fromARGB(255, 1, 85, 57),
           ),
           const SizedBox(height: 12.0),
         ]),

@@ -1,13 +1,11 @@
 import 'package:ferry_booking/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:ferry_booking/pages/login_screen.dart';
-
 import '../models/user.dart';
 import '../database/ferrytickets_helper.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
-  
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -21,7 +19,6 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +34,9 @@ class _RegisterPageState extends State<RegisterPage> {
             const Text(
               'Sign up',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 40,
-              ),
+                  color: Color.fromARGB(255, 1, 85, 57),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 32),
             ),
             const SizedBox(
               height: 60,
@@ -160,7 +157,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        User user = User (
+                        User user = User(
                           firstname: _fnameController.text,
                           lastname: _lnameController.text,
                           username: _usernameController.text,
@@ -171,6 +168,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 1, 85, 57),
                       padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
                     ),
                     child: const Text(
@@ -197,7 +195,11 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           );
                         },
-                        child: const Text('Sign in'),
+                        child: const Text(
+                          'Sign in',
+                          style:
+                              TextStyle(color: Color.fromARGB(255, 1, 85, 57)),
+                        ),
                       ),
                     ],
                   ),
