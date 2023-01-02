@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../database/ferrytickets_helper.dart';
 import '../models/user.dart';
 import '../models/ferryticket.dart';
+import '../theme/theme.dart';
 import '../widgets/viewFerry.dart';
 import '../database/userSession.dart';
 import '../widgets/bottomNavigationbar.dart';
@@ -33,38 +34,38 @@ class _DisplayPageState extends State<displayFerryBooking> {
       length: 1,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Ferry Tickets'),
+          backgroundColor: Color.fromARGB(255, 1, 85, 57),
+          title: Text(
+              'Water Space',
+              style: whiteTextStyle.copyWith(
+                  fontSize: 25, fontWeight: FontWeight.w500, letterSpacing: 1, color: Colors.white,
+                  )
+            ),
           centerTitle: true,
-          bottom: const TabBar(
-            tabs: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                child: Text('Ferry Tickets'),
-              ),
-            ],
-          ),
         ),
         body: TabBarView(
           children: [
             FerryBuilder(
-                future: _ferryTicketDatabase
-                    .getFerryUserTicket(userSaveSession.getUserID() as int),
-                onDelete: _onFerryTicketDelete,
-                onEdit: (value) {
-                  Navigator.of(context)
-                      .push(
-                        MaterialPageRoute(
-                          builder: (_) => order_page(),
-                          fullscreenDialog: true,
-                        ),
-                      )
-                      .then((_) => setState(() {}));
-                }),
+              future: _ferryTicketDatabase.getFerryUserTicket(userSaveSession.getUserID() as int),
+              onDelete: _onFerryTicketDelete,
+              onEdit: (value) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => order_page(),
+                    fullscreenDialog: true,
+                  ),
+                )
+                .then((_) => setState(() {}));
+              }
+            ),
           ],
         ),
         floatingActionButton:
-            Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end, 
+            children: [
           FloatingActionButton(
+            backgroundColor: Color.fromARGB(255, 1, 85, 57),
             onPressed: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(
@@ -77,7 +78,7 @@ class _DisplayPageState extends State<displayFerryBooking> {
             child: const Icon(Icons.add_circle_rounded),
           ),
           const SizedBox(height: 12.0),
-        ]),
+          ]),
       ),
     );
   }

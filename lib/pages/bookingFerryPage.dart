@@ -5,6 +5,7 @@ import '../database/userSession.dart';
 import '../database/ferrytickets_helper.dart';
 import '../models/ferryPlaces.dart';
 import '../models/ferryticket.dart';
+import '../theme/theme.dart';
 import '../widgets/bottomNavigationbar.dart';
 
 class order_page extends StatefulWidget {
@@ -12,12 +13,12 @@ class order_page extends StatefulWidget {
   final FerryTicket? ferryTicket;
 
   @override
-  _OderPageState createState() => _OderPageState();
+  _OrderPageState createState() => _OrderPageState();
 }
 
 enum JourneyEnum { OneWay, Return }
 
-class _OderPageState extends State<order_page> {
+class _OrderPageState extends State<order_page> {
   final FerryTicketDatabase _ferryTicketDatabase = FerryTicketDatabase();
   final TextEditingController _getDate = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -69,26 +70,20 @@ class _OderPageState extends State<order_page> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 1, 85, 57),
           leading: const BackButton(
             color: Colors.black,
           ),
           centerTitle: true,
-          title: Container(
-            width: 40,
-            child: Image.asset("assets/getter1.png"),
-          ),
-          // ignore: prefer_const_constructors
-          bottom: PreferredSize(
-            child: const Text(
-              "Water Space",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17),
+          title: Text(
+            "Water Space",
+            style: whiteTextStyle.copyWith(
+              fontSize: 25,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 1,
+              color: Colors.white,
             ),
-            preferredSize: Size.zero,
           ),
-          backgroundColor: Colors.white,
         ),
         body: Form(
           key: _formKey,
@@ -111,12 +106,13 @@ class _OderPageState extends State<order_page> {
 
                   //phone number input
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 20),
                     child: TextFormField(
                       controller: _getDate,
                       decoration: const InputDecoration(
                           icon: Icon(Icons.calendar_today),
-                          labelText: " Select Departure Date"),
+                          hintText: "Select Departure Date"),
                       readOnly: true,
                       onTap: () async {
                         DateTime? pickedDate = await showDatePicker(
