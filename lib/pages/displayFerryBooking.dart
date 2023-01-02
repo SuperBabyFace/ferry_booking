@@ -35,17 +35,9 @@ class _DisplayPageState extends State<displayFerryBooking> {
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 1, 85, 57),
           title: const Text(
-            'Ferry Tickets',
+            'Ticket List',
           ),
           centerTitle: true,
-          bottom: const TabBar(
-            tabs: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                child: Text('Ferry Tickets'),
-              ),
-            ],
-          ),
         ),
         body: TabBarView(
           children: [
