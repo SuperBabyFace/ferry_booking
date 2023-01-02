@@ -10,7 +10,6 @@ import '../widgets/viewFerry.dart';
 import '../database/userSession.dart';
 import '../widgets/bottomNavigationbar.dart';
 
-
 class displayFerryBooking extends StatefulWidget {
   const displayFerryBooking({Key? key, required this.user}) : super(key: key);
   final User user;

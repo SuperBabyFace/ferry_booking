@@ -3,6 +3,7 @@ import 'package:ferry_booking/pages/splashPage.dart';
 import 'package:flutter/material.dart';
 import '../pages/login_screen.dart';
 import '../database/userSession.dart';
+import '../widgets/bottomNavigationbar.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +33,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(debugShowCheckedModeBanner: false, routes: {
       '/': (context) => SplashPage(),
-      '/get-started': (context) => LoginPage(title: '',),
+      '/get-started': (context) => LoginPage(
+            title: '',
+          ),
       // '/sign-up': (context) => SignUpPage(),
       // '/bonus': (context) => BonusPage(),
       // '/main': (context) => MainPage(),
