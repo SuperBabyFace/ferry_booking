@@ -100,7 +100,7 @@ class _OrderPageState extends State<order_page> {
                     child: Text(
                       "Ticket Booking",
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16),
+                          fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
                   Padding(
@@ -121,7 +121,7 @@ class _OrderPageState extends State<order_page> {
                             Row(
                               children: [
                                 Radio(
-                                  title: const Text("One Way"),
+                                  //title: const Text("One Way"),
                                   activeColor: Color.fromARGB(255, 1, 85, 57),
                                   value: JourneyEnum.OneWay,
                                   groupValue: _journey,
@@ -137,8 +137,7 @@ class _OrderPageState extends State<order_page> {
                             Row(
                               children: [
                                 Radio(
-                                  //   controller: ,
-                                  title: const Text("Return"),
+                                  //title: const Text("Return"),
                                   activeColor: Color.fromARGB(255, 1, 85, 57),
                                   value: JourneyEnum.Return,
                                   groupValue: _journey,
