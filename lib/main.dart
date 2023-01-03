@@ -31,6 +31,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    theme:
+    ThemeData(
+      colorScheme: defaultColorScheme,
+      brightness: Brightness.light,
+      // primarySwatch: Colors.red,
+    );
     return MaterialApp(debugShowCheckedModeBanner: false, routes: {
       '/': (context) => SplashPage(),
       '/get-started': (context) => LoginPage(
@@ -43,3 +49,15 @@ class MyApp extends StatelessWidget {
     });
   }
 }
+
+// Widget build(BuildContext context) {
+//   return MaterialApp(
+//     title: 'Flutter Demo',
+//     theme: ThemeData(
+//       colorScheme: defaultColorScheme,
+//       // brightness: Brightness.light,
+//       primarySwatch: Colors.blue,
+//     ),
+//     home: const LoginPage(title: 'Login UI'),
+//   );
+// }

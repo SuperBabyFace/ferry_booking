@@ -158,7 +158,7 @@ class _OrderPageState extends State<order_page> {
                       },
                       icon: const Icon(
                         Icons.arrow_drop_down_circle,
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 1, 85, 57),
                       ),
                       decoration: InputDecoration(
                           labelText: "Destination",
@@ -188,7 +188,7 @@ class _OrderPageState extends State<order_page> {
                       },
                       icon: const Icon(
                         Icons.arrow_drop_down_circle,
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 1, 85, 57),
                       ),
                       decoration: InputDecoration(
                           labelText: "Departure",
@@ -211,6 +211,7 @@ class _OrderPageState extends State<order_page> {
                         const SizedBox(height: 12.0),
                         RadioListTile<JourneyEnum>(
                           //   controller: ,
+                          activeColor: Color.fromARGB(255, 1, 85, 57),
                           value: JourneyEnum.OneWay,
                           groupValue: _journey,
                           title: Text("One Way"),
@@ -223,6 +224,7 @@ class _OrderPageState extends State<order_page> {
                         ),
                         RadioListTile<JourneyEnum>(
                           //   controller: ,
+                          activeColor: Color.fromARGB(255, 1, 85, 57),
                           value: JourneyEnum.Return,
                           groupValue: _journey,
                           title: Text("Return"),
@@ -232,9 +234,16 @@ class _OrderPageState extends State<order_page> {
                             });
                           },
                         ),
+                        // ElevatedButton(
+                        //   onPressed: _onSave,
+                        //   child: const Text("Confirm Order"),
+                        // ),
                         ElevatedButton(
+                          child: Text('Confirm Order'),
                           onPressed: _onSave,
-                          child: const Text("Confirm Order"),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(255, 1, 85, 57),
+                          ),
                         ),
                       ],
                     ),

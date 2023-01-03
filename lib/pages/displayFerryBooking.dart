@@ -35,12 +35,18 @@ class _DisplayPageState extends State<displayFerryBooking> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 1, 85, 57),
+<<<<<<< HEAD
           title: Text(
               'Water Space',
               style: whiteTextStyle.copyWith(
                   fontSize: 25, fontWeight: FontWeight.w500, letterSpacing: 1, color: Colors.white,
                   )
             ),
+=======
+          title: const Text(
+            'Ticket List',
+          ),
+>>>>>>> bfbdf5baccbb6b158b7a7e4d3a141a0358be3f78
           centerTitle: true,
         ),
         body: TabBarView(
@@ -76,6 +82,7 @@ class _DisplayPageState extends State<displayFerryBooking> {
             },
             heroTag: 'addFerryTicket',
             child: const Icon(Icons.add_circle_rounded),
+            backgroundColor: Color.fromARGB(255, 1, 85, 57),
           ),
           const SizedBox(height: 12.0),
           ]),
