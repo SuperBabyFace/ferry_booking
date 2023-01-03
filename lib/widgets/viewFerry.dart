@@ -87,7 +87,7 @@ class FerryBuilder extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: Colors.grey[200],
                     ),
-                    alignment: Alignment.topLeft,
+                    alignment: Alignment.center,
                     child: Icon(Icons.edit, color: Colors.orange[800]),
                   ),
                 ),
@@ -101,7 +101,7 @@ class FerryBuilder extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: Colors.grey[200],
                     ),
-                    alignment: Alignment.topRight,
+                    alignment: Alignment.centerLeft,
                     child: Icon(Icons.delete, color: Colors.red[800]),
                   ),
                 )
