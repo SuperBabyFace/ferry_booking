@@ -5,12 +5,12 @@ class FerryBuilder extends StatelessWidget {
   const FerryBuilder({
     Key? key,
     required this.future,
-    required this.onDelete,
-    required this.onEdit,
+    required this.deleteTicket,
+    required this.editTicket,
   }) : super(key: key);
   final Future<List<FerryTicket>> future;
-  final Function(FerryTicket) onEdit;
-  final Function(FerryTicket) onDelete;
+  final Function(FerryTicket) editTicket;
+  final Function(FerryTicket) deleteTicket;
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +28,14 @@ class FerryBuilder extends StatelessWidget {
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 final ferryTicket = snapshot.data![index];
-                return _buildFerryTicketCard(ferryTicket, context);
+                return buildFerryTicketCard(ferryTicket, context);
               },
             ),
           );
         });
   }
 
-  Widget _buildFerryTicketCard(FerryTicket ferryTicket, BuildContext context) {
+  Widget buildFerryTicketCard(FerryTicket ferryTicket, BuildContext context) {
     return Card(
         child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -79,7 +79,7 @@ class FerryBuilder extends StatelessWidget {
                 Text(ferryTicket.depart_route),
                 const SizedBox(width: 20.0),
                 GestureDetector(
-                  onTap: () => onEdit(ferryTicket),
+                  onTap: () => editTicket(ferryTicket),
                   child: Container(
                     height: 40.0,
                     width: 40.0,
@@ -87,21 +87,21 @@ class FerryBuilder extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: Colors.grey[200],
                     ),
-                    alignment: Alignment.center,
+                    alignment: Alignment.topLeft,
                     child: Icon(Icons.edit, color: Colors.orange[800]),
                   ),
                 ),
                 const SizedBox(width: 29.0),
                 GestureDetector(
-                  onTap: () => onDelete(ferryTicket),
+                  onTap: () => deleteTicket(ferryTicket),
                   child: Container(
                     height: 40.0,
-                    width: 40.0,
+                    width: 50.0,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.grey[200],
                     ),
-                    alignment: Alignment.center,
+                    alignment: Alignment.topRight,
                     child: Icon(Icons.delete, color: Colors.red[800]),
                   ),
                 )

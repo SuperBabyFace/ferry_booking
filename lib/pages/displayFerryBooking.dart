@@ -44,8 +44,8 @@ class _DisplayPageState extends State<displayFerryBooking> {
             FerryBuilder(
                 future: _ferryTicketDatabase
                     .getFerryUserTicket(userSaveSession.getUserID() as int),
-                onDelete: _onFerryTicketDelete,
-                onEdit: (value) {
+                deleteTicket: _onFerryTicketDelete,
+                editTicket: (value) {
                   Navigator.of(context)
                       .push(
                         MaterialPageRoute(
