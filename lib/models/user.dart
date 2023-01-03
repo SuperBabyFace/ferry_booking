@@ -8,16 +8,16 @@ class User {
   final String password;
   final String? mobilehp;
 
-  User({
-    this.user_id,
-    this.firstname,
-    this.lastname,
-    required this.username,
-    required this.password,
-    this.mobilehp
-  });
+  User(
+      {this.user_id,
+      this.firstname,
+      this.lastname,
+      required this.username,
+      required this.password,
+      this.mobilehp});
   // Convert a Brand into a Map. The keys must correspond to the names of the
   // columns in the database.
+  // to identify pages it sends data and read data to database
 
   Map<String, dynamic> toMap() {
     return {
@@ -41,17 +41,17 @@ class User {
     );
   }
   String toJson() => json.encode(toMap());
-  factory User.fromJson(String source) =>
-      User.fromMap(json.decode(source));
+  factory User.fromJson(String source) => User.fromMap(json.decode(source));
   // Implement toString to make it easier to see information about
   // each brandd when using the print statement.
 
   @override
-  String toString() { return
-      '''User( 
+  String toString() {
+    return '''User( 
       user_id: $user_id,
       firstname: $firstname,
       lastname: $lastname,
       username: $username,
-      password: $password)''';}
+      password: $password)''';
+  }
 }
