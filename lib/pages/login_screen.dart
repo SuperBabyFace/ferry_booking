@@ -103,11 +103,6 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: const Text(
                           'Create an account',
-<<<<<<< HEAD
-=======
-                          style:
-                              TextStyle(color: Color.fromARGB(255, 1, 85, 57)),
->>>>>>> bfbdf5baccbb6b158b7a7e4d3a141a0358be3f78
                         ),
                       ),
                     ],

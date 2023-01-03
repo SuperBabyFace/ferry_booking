@@ -41,15 +41,9 @@ class _RegisterPageState extends State<RegisterPage> {
             const Text(
               'Sign up',
               style: TextStyle(
-<<<<<<< HEAD
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
-=======
-                  color: Color.fromARGB(255, 1, 85, 57),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 32),
->>>>>>> bfbdf5baccbb6b158b7a7e4d3a141a0358be3f78
             ),
             const SizedBox(
               height: 30,
