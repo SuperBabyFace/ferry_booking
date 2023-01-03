@@ -5,6 +5,7 @@ import '../database/userSession.dart';
 import '../database/ferrytickets_helper.dart';
 import '../models/ferryPlaces.dart';
 import '../models/ferryticket.dart';
+import '../widgets/bottomNavigationbar.dart';
 
 class order_page extends StatefulWidget {
   const order_page({Key? key, this.ferryTicket}) : super(key: key);
@@ -29,20 +30,18 @@ class _OderPageState extends State<order_page> {
     super.initState();
     if (widget.ferryTicket != null) {
       _getDate.text = widget.ferryTicket!.depart_date;
-      _selectedDeparture = ferryDeparture.indexOf(widget.ferryTicket!.depart_route);
+      _selectedDeparture =
+          ferryDeparture.indexOf(widget.ferryTicket!.depart_route);
       _selectedDestination =
           ferryDestination.indexOf(widget.ferryTicket!.dest_route);
     }
   }
-
-
 
   Future<void> _onSave() async {
     int id;
     final depature = ferryDeparture[_selectedDeparture];
     final destination = ferryDestination[_selectedDestination];
     final journeys = _journey.name;
-    
 
     widget.ferryTicket == null
         ? await _ferryTicketDatabase.insertFerryTicket(
@@ -163,7 +162,7 @@ class _OderPageState extends State<order_page> {
                       },
                       icon: const Icon(
                         Icons.arrow_drop_down_circle,
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 1, 85, 57),
                       ),
                       decoration: InputDecoration(
                           labelText: "Destination",
@@ -193,7 +192,7 @@ class _OderPageState extends State<order_page> {
                       },
                       icon: const Icon(
                         Icons.arrow_drop_down_circle,
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 1, 85, 57),
                       ),
                       decoration: InputDecoration(
                           labelText: "Departure",
@@ -216,6 +215,7 @@ class _OderPageState extends State<order_page> {
                         const SizedBox(height: 12.0),
                         RadioListTile<JourneyEnum>(
                           //   controller: ,
+                          activeColor: Color.fromARGB(255, 1, 85, 57),
                           value: JourneyEnum.OneWay,
                           groupValue: _journey,
                           title: Text("One Way"),
@@ -228,6 +228,7 @@ class _OderPageState extends State<order_page> {
                         ),
                         RadioListTile<JourneyEnum>(
                           //   controller: ,
+                          activeColor: Color.fromARGB(255, 1, 85, 57),
                           value: JourneyEnum.Return,
                           groupValue: _journey,
                           title: Text("Return"),
@@ -237,9 +238,16 @@ class _OderPageState extends State<order_page> {
                             });
                           },
                         ),
+                        // ElevatedButton(
+                        //   onPressed: _onSave,
+                        //   child: const Text("Confirm Order"),
+                        // ),
                         ElevatedButton(
+                          child: Text('Confirm Order'),
                           onPressed: _onSave,
-                          child: const Text("Confirm Order"),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(255, 1, 85, 57),
+                          ),
                         ),
                       ],
                     ),
