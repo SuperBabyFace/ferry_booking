@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../database/ferrytickets_helper.dart';
 import '../models/user.dart';
 import '../models/ferryticket.dart';
+import '../theme/theme.dart';
 import '../widgets/viewFerry.dart';
 import '../database/userSession.dart';
 import '../widgets/bottomNavigationbar.dart';
@@ -34,14 +35,18 @@ class _DisplayPageState extends State<displayFerryBooking> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 1, 85, 57),
-          title: const Text(
-            'Ticket List',
-          ),
+          title: Text(
+              'Water Space',
+              style: whiteTextStyle.copyWith(
+                  fontSize: 25, fontWeight: FontWeight.w500, letterSpacing: 1, color: Colors.white,
+                  )
+            ),
           centerTitle: true,
         ),
         body: TabBarView(
           children: [
             FerryBuilder(
+<<<<<<< HEAD
                 future: _ferryTicketDatabase
                     .getFerryUserTicket(userSaveSession.getUserID() as int),
                 deleteTicket: _onFerryTicketDelete,
@@ -55,11 +60,28 @@ class _DisplayPageState extends State<displayFerryBooking> {
                       )
                       .then((_) => setState(() {}));
                 }),
+=======
+              future: _ferryTicketDatabase.getFerryUserTicket(userSaveSession.getUserID() as int),
+              onDelete: _onFerryTicketDelete,
+              onEdit: (value) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => order_page(),
+                    fullscreenDialog: true,
+                  ),
+                )
+                .then((_) => setState(() {}));
+              }
+            ),
+>>>>>>> da4f2a029822a4a72bb341b60b147e2f2b18cbf6
           ],
         ),
         floatingActionButton:
-            Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end, 
+            children: [
           FloatingActionButton(
+            backgroundColor: Color.fromARGB(255, 1, 85, 57),
             onPressed: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(
@@ -70,10 +92,9 @@ class _DisplayPageState extends State<displayFerryBooking> {
             },
             heroTag: 'addFerryTicket',
             child: const Icon(Icons.add_circle_rounded),
-            backgroundColor: Color.fromARGB(255, 1, 85, 57),
           ),
           const SizedBox(height: 12.0),
-        ]),
+          ]),
       ),
     );
   }

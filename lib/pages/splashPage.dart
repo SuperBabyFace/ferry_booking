@@ -34,21 +34,23 @@ class _SplashPage extends State<SplashPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 300,
-              height: 300,
-              margin: EdgeInsets.only(bottom: 50),
+              width: 350,
+              height: 350,
+              margin: EdgeInsets.all(0),
               decoration: BoxDecoration(
-                  image:
-                      DecorationImage(image: AssetImage('assets/getter1.png'))),
+                  image: DecorationImage(
+                      image: AssetImage('assets/getter1.png'),
+                      fit: BoxFit.cover,
+                      )
+              ),
             ),
+
             Text(
               'Water Space',
               style: whiteTextStyle.copyWith(
-                  color: Color.fromARGB(255, 1, 85, 57),
-                  fontSize: 32,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 10),
-            )
+                  fontSize: 40, fontWeight: FontWeight.w500, letterSpacing: 1, color: Color.fromARGB(255, 1, 85, 57),
+                  )
+            ),
           ],
         ),
       ),

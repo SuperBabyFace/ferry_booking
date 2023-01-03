@@ -31,15 +31,22 @@ class _RegisterPageState extends State<RegisterPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            Text (
+              'Water Space',
+              style: whiteTextStyle.copyWith(
+                  fontSize: 30, fontWeight: FontWeight.w500, letterSpacing: 1, color: Color.fromARGB(255, 1, 85, 57),
+              ),
+            ),
+            
             const Text(
               'Sign up',
               style: TextStyle(
-                  color: Color.fromARGB(255, 1, 85, 57),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 32),
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
             ),
             const SizedBox(
-              height: 60,
+              height: 30,
             ),
             Form(
               key: _formKey,

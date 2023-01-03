@@ -3,6 +3,7 @@ import 'package:ferry_booking/pages/splashPage.dart';
 import 'package:flutter/material.dart';
 import '../pages/login_screen.dart';
 import '../database/userSession.dart';
+import '../widgets/bottomNavigationbar.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

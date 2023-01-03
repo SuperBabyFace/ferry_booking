@@ -29,9 +29,20 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(height: 0.5),
-            Image.asset('assets/getter1.png'),
+          children: <Widget> [
+            Container(height: 0.5),
+
+            Text (
+              'Water Space',
+              style: whiteTextStyle.copyWith(
+                  fontSize: 30, fontWeight: FontWeight.w500, letterSpacing: 1, color: Color.fromARGB(255, 1, 85, 57),
+              ),
+            ),
+            
+            Image.asset('assets/getter1.png',
+            fit: BoxFit.cover
+            ),
+
             Form(
               key: _formKey,
               child: Column(
@@ -92,8 +103,6 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: const Text(
                           'Create an account',
-                          style:
-                              TextStyle(color: Color.fromARGB(255, 1, 85, 57)),
                         ),
                       ),
                     ],
