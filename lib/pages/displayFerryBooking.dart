@@ -46,7 +46,6 @@ class _DisplayPageState extends State<displayFerryBooking> {
         body: TabBarView(
           children: [
             FerryBuilder(
-<<<<<<< HEAD
                 future: _ferryTicketDatabase
                     .getFerryUserTicket(userSaveSession.getUserID() as int),
                 deleteTicket: _onFerryTicketDelete,
@@ -60,20 +59,6 @@ class _DisplayPageState extends State<displayFerryBooking> {
                       )
                       .then((_) => setState(() {}));
                 }),
-=======
-              future: _ferryTicketDatabase.getFerryUserTicket(userSaveSession.getUserID() as int),
-              onDelete: _onFerryTicketDelete,
-              onEdit: (value) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => order_page(),
-                    fullscreenDialog: true,
-                  ),
-                )
-                .then((_) => setState(() {}));
-              }
-            ),
->>>>>>> da4f2a029822a4a72bb341b60b147e2f2b18cbf6
           ],
         ),
         floatingActionButton:

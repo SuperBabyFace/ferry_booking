@@ -94,9 +94,7 @@ class _OrderPageState extends State<order_page> {
               child: Column(
                 children: [
                   Container(
-                    // ignore: prefer_const_constructors
                     padding: EdgeInsets.all(16),
-                    // ignore: prefer_const_constructors
                     child: Text(
                       "Ticket Booking",
                       style: const TextStyle(
