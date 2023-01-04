@@ -95,7 +95,9 @@ class _OrderPageState extends State<order_page> {
               child: Column(
                 children: [
                   Container(
+                    // ignore: prefer_const_constructors
                     padding: EdgeInsets.all(16),
+                    // ignore: prefer_const_constructors
                     child: Text(
                       "Ticket Booking",
                       style: const TextStyle(
@@ -115,7 +117,6 @@ class _OrderPageState extends State<order_page> {
                         ),
                         const SizedBox(height: 12.0),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Expanded (
                             child: Row(
@@ -152,8 +153,6 @@ class _OrderPageState extends State<order_page> {
                             )),
                           ],
                         ),
-
-                        //phone number input
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 20),
@@ -247,10 +246,7 @@ class _OrderPageState extends State<order_page> {
                           ),
                         ),
 
-                        // ElevatedButton(
-                        //   onPressed: _onSave,
-                        //   child: const Text("Confirm Order"),
-                        // ),
+                        
                         ElevatedButton(
                           child: Text('Book Now'),
                           onPressed: _onSave,

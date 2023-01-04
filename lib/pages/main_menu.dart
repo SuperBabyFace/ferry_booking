@@ -27,7 +27,7 @@ class MainMenuPage extends StatefulWidget {
 class _MainMenuPageState extends State<MainMenuPage> {
   // Function for bottom nav bar
   final List<String> pageTitle = [
-    "Order",
+    
     "View Booking",
     "Settings",
   ];
@@ -51,7 +51,6 @@ class _MainMenuPageState extends State<MainMenuPage> {
   Widget build(BuildContext context) {
     // List of bottom nav bar page
     final List<Widget> _widgetOptions = <Widget>[
-      order_page(user: widget.user),
       displayFerryBooking(user: widget.user),
       SettingPage(),
     ];
@@ -63,10 +62,6 @@ class _MainMenuPageState extends State<MainMenuPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.animation_outlined),
-            label: 'Order',
-          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.app_registration_outlined),
             label: 'View Booking',
