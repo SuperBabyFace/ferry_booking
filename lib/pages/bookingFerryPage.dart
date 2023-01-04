@@ -98,101 +98,7 @@ class _OrderPageState extends State<order_page> {
                     child: Text(
                       "Ticket Booking",
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                  ),
-
-                  //phone number input
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    child: TextFormField(
-                      controller: _getDate,
-                      decoration: const InputDecoration(
-                          icon: Icon(Icons.calendar_today),
-                          hintText: "Select Departure Date"),
-                      readOnly: true,
-                      onTap: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime.now(),
-                          lastDate: DateTime(2100),
-                        );
-                        if (pickedDate != null) {
-                          String formattedDate =
-                              DateFormat('yyyy MM dd').format(pickedDate);
-
-                          setState(() {
-                            if (_getDate.text != null) {
-                              _getDate;
-                            }
-                            _getDate.text = formattedDate as String;
-                          });
-                        } else {
-                          print("Date is not selected");
-                        }
-                      },
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: DropdownButtonFormField(
-                      value: _selectedDeparture == null
-                          ? null
-                          : ferryDeparture[_selectedDeparture],
-                      items: ferryDeparture
-                          .map((String value) => DropdownMenuItem(
-                                child: Text(value),
-                                value: value,
-                              ))
-                          .toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedDeparture =
-                              ferryDeparture.indexOf(value.toString());
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.arrow_drop_down_circle,
-                        color: Color.fromARGB(255, 1, 85, 57),
-                      ),
-                      decoration: InputDecoration(
-                          labelText: "Destination",
-                          prefixIcon: Icon(
-                            Icons.pin_drop_outlined,
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: DropdownButtonFormField(
-                      value: _selectedDestination == null
-                          ? null
-                          : ferryDestination[_selectedDestination],
-                      items: ferryDestination
-                          .map((String value) => DropdownMenuItem(
-                                child: Text(value),
-                                value: value,
-                              ))
-                          .toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedDestination =
-                              ferryDestination.indexOf(value.toString());
-                          print(_selectedDestination);
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.arrow_drop_down_circle,
-                        color: Color.fromARGB(255, 1, 85, 57),
-                      ),
-                      decoration: InputDecoration(
-                          labelText: "Departure",
-                          prefixIcon: Icon(
-                            Icons.pin_drop_outlined,
-                          )),
+                          fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
                   Padding(
@@ -207,31 +113,137 @@ class _OrderPageState extends State<order_page> {
                           ),
                         ),
                         const SizedBox(height: 12.0),
-                        RadioListTile<JourneyEnum>(
-                          //   controller: ,
-                          activeColor: Color.fromARGB(255, 1, 85, 57),
-                          value: JourneyEnum.OneWay,
-                          groupValue: _journey,
-                          title: Text("One Way"),
-                          onChanged: (value) {
-                            setState(() {
-                              _journey = value as JourneyEnum;
-                              print(_journey);
-                            });
-                          },
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Row(
+                              children: [
+                                Radio(
+                                  //title: const Text("One Way"),
+                                  activeColor: Color.fromARGB(255, 1, 85, 57),
+                                  value: JourneyEnum.OneWay,
+                                  groupValue: _journey,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _journey = value as JourneyEnum;
+                                      print(_journey);
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Radio(
+                                  //title: const Text("Return"),
+                                  activeColor: Color.fromARGB(255, 1, 85, 57),
+                                  value: JourneyEnum.Return,
+                                  groupValue: _journey,
+                                  onChanged: (val) {
+                                    setState(() {
+                                      _journey = val as JourneyEnum;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                        RadioListTile<JourneyEnum>(
-                          //   controller: ,
-                          activeColor: Color.fromARGB(255, 1, 85, 57),
-                          value: JourneyEnum.Return,
-                          groupValue: _journey,
-                          title: Text("Return"),
-                          onChanged: (val) {
-                            setState(() {
-                              _journey = val as JourneyEnum;
-                            });
-                          },
+
+                        //phone number input
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20),
+                          child: TextFormField(
+                            controller: _getDate,
+                            decoration: const InputDecoration(
+                                icon: Icon(Icons.calendar_today),
+                                hintText: "Select Departure Date"),
+                            readOnly: true,
+                            onTap: () async {
+                              DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime(2100),
+                              );
+                              if (pickedDate != null) {
+                                String formattedDate =
+                                    DateFormat('yyyy MM dd').format(pickedDate);
+
+                                setState(() {
+                                  if (_getDate.text != null) {
+                                    _getDate;
+                                  }
+                                  _getDate.text = formattedDate as String;
+                                });
+                              } else {
+                                print("Date is not selected");
+                              }
+                            },
+                          ),
                         ),
+
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: DropdownButtonFormField(
+                            value: _selectedDeparture == null
+                                ? null
+                                : ferryDeparture[_selectedDeparture],
+                            items: ferryDeparture
+                                .map((String value) => DropdownMenuItem(
+                                      child: Text(value),
+                                      value: value,
+                                    ))
+                                .toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedDeparture =
+                                    ferryDeparture.indexOf(value.toString());
+                              });
+                            },
+                            icon: const Icon(
+                              Icons.arrow_drop_down_circle,
+                              color: Color.fromARGB(255, 1, 85, 57),
+                            ),
+                            decoration: InputDecoration(
+                                labelText: "Destination",
+                                prefixIcon: Icon(
+                                  Icons.pin_drop_outlined,
+                                )),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: DropdownButtonFormField(
+                            value: _selectedDestination == null
+                                ? null
+                                : ferryDestination[_selectedDestination],
+                            items: ferryDestination
+                                .map((String value) => DropdownMenuItem(
+                                      child: Text(value),
+                                      value: value,
+                                    ))
+                                .toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedDestination =
+                                    ferryDestination.indexOf(value.toString());
+                                print(_selectedDestination);
+                              });
+                            },
+                            icon: const Icon(
+                              Icons.arrow_drop_down_circle,
+                              color: Color.fromARGB(255, 1, 85, 57),
+                            ),
+                            decoration: InputDecoration(
+                                labelText: "Departure",
+                                prefixIcon: Icon(
+                                  Icons.pin_drop_outlined,
+                                )),
+                          ),
+                        ),
+
                         // ElevatedButton(
                         //   onPressed: _onSave,
                         //   child: const Text("Confirm Order"),
