@@ -30,17 +30,22 @@ class _DisplayPageState extends State<displayFerryBooking> {
 
   @override
   Widget build(BuildContext context) {
+    AppBar(
+      title: Text("App Bar without Back Button"),
+      automaticallyImplyLeading: false,
+    );
     return DefaultTabController(
       length: 1,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 1, 85, 57),
-          title: Text(
-              'Water Space',
+          title: Text('Water Space',
               style: whiteTextStyle.copyWith(
-                  fontSize: 25, fontWeight: FontWeight.w500, letterSpacing: 1, color: Colors.white,
-                  )
-            ),
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 1,
+                color: Colors.white,
+              )),
           centerTitle: true,
         ),
         body: TabBarView(
@@ -48,8 +53,13 @@ class _DisplayPageState extends State<displayFerryBooking> {
             FerryBuilder(
                 future: _ferryTicketDatabase
                     .getFerryUserTicket(userSaveSession.getUserID() as int),
+<<<<<<< HEAD
                 deleteTicket: _onFerryTicketDelete,
                 editTicket: (value) {
+=======
+                onDelete: _onFerryTicketDelete,
+                onEdit: (value) {
+>>>>>>> a4fd275b0aba6da8dd3d3fa12c89585cfcd09728
                   Navigator.of(context)
                       .push(
                         MaterialPageRoute(
@@ -62,9 +72,7 @@ class _DisplayPageState extends State<displayFerryBooking> {
           ],
         ),
         floatingActionButton:
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end, 
-            children: [
+            Column(mainAxisAlignment: MainAxisAlignment.end, children: [
           FloatingActionButton(
             backgroundColor: Color.fromARGB(255, 1, 85, 57),
             onPressed: () {
@@ -79,7 +87,7 @@ class _DisplayPageState extends State<displayFerryBooking> {
             child: const Icon(Icons.add_circle_rounded),
           ),
           const SizedBox(height: 12.0),
-          ]),
+        ]),
       ),
     );
   }

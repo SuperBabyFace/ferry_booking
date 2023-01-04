@@ -116,10 +116,10 @@ class _OrderPageState extends State<order_page> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Row(
+                            Expanded (
+                            child: Row(
                               children: [
                                 Radio(
-                                  //title: const Text("One Way"),
                                   activeColor: Color.fromARGB(255, 1, 85, 57),
                                   value: JourneyEnum.OneWay,
                                   groupValue: _journey,
@@ -130,12 +130,13 @@ class _OrderPageState extends State<order_page> {
                                     });
                                   },
                                 ),
+                                Expanded(child: Text("One Way"),),
                               ],
-                            ),
-                            Row(
+                            )),
+                            Expanded(
+                            child: Row(
                               children: [
                                 Radio(
-                                  //title: const Text("Return"),
                                   activeColor: Color.fromARGB(255, 1, 85, 57),
                                   value: JourneyEnum.Return,
                                   groupValue: _journey,
@@ -145,8 +146,9 @@ class _OrderPageState extends State<order_page> {
                                     });
                                   },
                                 ),
+                                Expanded(child: const Text("Return"),)
                               ],
-                            ),
+                            )),
                           ],
                         ),
 
@@ -249,7 +251,7 @@ class _OrderPageState extends State<order_page> {
                         //   child: const Text("Confirm Order"),
                         // ),
                         ElevatedButton(
-                          child: Text('Confirm Order'),
+                          child: Text('Book Now'),
                           onPressed: _onSave,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color.fromARGB(255, 1, 85, 57),
