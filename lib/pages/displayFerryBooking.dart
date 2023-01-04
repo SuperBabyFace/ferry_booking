@@ -30,40 +30,44 @@ class _DisplayPageState extends State<displayFerryBooking> {
 
   @override
   Widget build(BuildContext context) {
+    AppBar(
+      title: Text("App Bar without Back Button"),
+      automaticallyImplyLeading: false,
+    );
     return DefaultTabController(
       length: 1,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 1, 85, 57),
-          title: Text(
-              'Water Space',
+          title: Text('Water Space',
               style: whiteTextStyle.copyWith(
-                  fontSize: 25, fontWeight: FontWeight.w500, letterSpacing: 1, color: Colors.white,
-                  )
-            ),
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 1,
+                color: Colors.white,
+              )),
           centerTitle: true,
         ),
         body: TabBarView(
           children: [
             FerryBuilder(
-              future: _ferryTicketDatabase.getFerryUserTicket(userSaveSession.getUserID() as int),
-              onDelete: _onFerryTicketDelete,
-              onEdit: (value) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => order_page(),
-                    fullscreenDialog: true,
-                  ),
-                )
-                .then((_) => setState(() {}));
-              }
-            ),
+                future: _ferryTicketDatabase
+                    .getFerryUserTicket(userSaveSession.getUserID() as int),
+                onDelete: _onFerryTicketDelete,
+                onEdit: (value) {
+                  Navigator.of(context)
+                      .push(
+                        MaterialPageRoute(
+                          builder: (_) => order_page(),
+                          fullscreenDialog: true,
+                        ),
+                      )
+                      .then((_) => setState(() {}));
+                }),
           ],
         ),
         floatingActionButton:
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end, 
-            children: [
+            Column(mainAxisAlignment: MainAxisAlignment.end, children: [
           FloatingActionButton(
             backgroundColor: Color.fromARGB(255, 1, 85, 57),
             onPressed: () {
@@ -78,7 +82,7 @@ class _DisplayPageState extends State<displayFerryBooking> {
             child: const Icon(Icons.add_circle_rounded),
           ),
           const SizedBox(height: 12.0),
-          ]),
+        ]),
       ),
     );
   }

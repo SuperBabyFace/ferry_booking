@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:ferry_booking/pages/main_menu.dart';
 import 'package:ferry_booking/pages/splashPage.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -181,7 +182,7 @@ class FerryTicketDatabase {
       );
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => displayFerryBooking(user: user)),
+        MaterialPageRoute(builder: (context) => MainMenuPage(user: user)),
       );
     }
   }
