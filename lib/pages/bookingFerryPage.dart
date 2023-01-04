@@ -1,3 +1,4 @@
+import 'package:ferry_booking/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -9,7 +10,7 @@ import '../theme/theme.dart';
 import '../widgets/bottomNavigationbar.dart';
 
 class order_page extends StatefulWidget {
-  const order_page({Key? key, this.ferryTicket}) : super(key: key);
+  const order_page({Key? key, this.ferryTicket, required User user}) : super(key: key);
   final FerryTicket? ferryTicket;
 
   @override
