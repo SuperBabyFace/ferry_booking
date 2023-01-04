@@ -37,7 +37,6 @@ class FerryBuilder extends StatelessWidget {
 
   Widget buildFerryTicketCard(FerryTicket ferryTicket, BuildContext context) {
     return Card(
-<<<<<<< HEAD
         child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Row(
@@ -110,11 +109,6 @@ class FerryBuilder extends StatelessWidget {
             ),
           ),
         ],
-=======
-      color: Color.fromARGB(255, 186, 221, 187),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20)
->>>>>>> 2f2bd45c116f0c223ce428783fb205d62d925fb0
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -190,7 +184,7 @@ class FerryBuilder extends StatelessWidget {
                         children: [
                           const SizedBox(width: 20.0),
                           GestureDetector(
-                            onTap: () => onEdit(ferryTicket),
+                            onTap: () => editTicket(ferryTicket),
                             child: Container(
                               height: 40.0,
                               width: 40.0,
@@ -208,7 +202,7 @@ class FerryBuilder extends StatelessWidget {
                         children: [
                           const SizedBox(width: 20.0),
                           GestureDetector(
-                            onTap: () => onDelete(ferryTicket),
+                            onTap: () => deleteTicket(ferryTicket),
                             child: Container(
                               height: 40.0,
                               width: 40.0,
@@ -230,6 +224,6 @@ class FerryBuilder extends StatelessWidget {
           ]
         )
       )
-    );
+    ));
   }
 }
