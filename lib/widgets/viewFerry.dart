@@ -45,7 +45,7 @@ class FerryBuilder extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           children: [
-            Icon(Icons.directions_boat_rounded, color: Color.fromARGB(255, 1, 85, 57,), size: 35.0),
+            Icon(Icons.directions_boat_rounded, color: Color.fromARGB(255, 1, 85, 57,), size: 40.0),
             const SizedBox(
               width: 15.0,
             ),
@@ -69,7 +69,10 @@ class FerryBuilder extends StatelessWidget {
                       Row(
                         children: [
                           const SizedBox(height: 4.0),
-                          const Text("Depart from:"),
+                          const Text("Depart from:  ",
+                          style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15.0)),
                         ]
                       ),
                       Row(
@@ -77,8 +80,8 @@ class FerryBuilder extends StatelessWidget {
                           Text(
                             ferryTicket.dest_route,
                             style: const TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ],
@@ -91,7 +94,10 @@ class FerryBuilder extends StatelessWidget {
                       Row(
                         children: [
                           const SizedBox(height: 4.0),
-                          const Text("Destination:"),
+                          const Text("Destination:  ", 
+                          style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15.0)),
                         ]
                       ),
                       Row(
@@ -100,14 +106,41 @@ class FerryBuilder extends StatelessWidget {
                           Text(
                             ferryTicket.depart_route,
                             style: const TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ]
                       ),
                     ]
                   ),
+                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const SizedBox(height: 4.0),
+                          const Text("Journey:  ",
+                          style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15.0)),
+                        ]
+                      ),
+                      Row(
+                        children: [
+                          const SizedBox(height: 4.0),
+                          Text(
+                            ferryTicket.journey,
+                            style: const TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ]
+                      ),
+                    ]
+                  ),
+                  SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [

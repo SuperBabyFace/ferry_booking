@@ -28,6 +28,13 @@ class _DisplayPageState extends State<displayFerryBooking> {
     setState(() {});
   }
 
+  Future<void> _onFerryTicketEdit(FerryTicket ferryTicket) async {
+    await _ferryTicketDatabase.editFerryTicket(
+      ferryTicket,
+    );
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     AppBar(
@@ -58,7 +65,10 @@ class _DisplayPageState extends State<displayFerryBooking> {
                   Navigator.of(context)
                       .push(
                         MaterialPageRoute(
-                          builder: (_) => order_page(),
+                          builder: (_) => order_page(
+                            ferryTicket: value,
+                            user: widget.user
+                          ),
                           fullscreenDialog: true,
                         ),
                       )
@@ -73,7 +83,7 @@ class _DisplayPageState extends State<displayFerryBooking> {
             onPressed: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(
-                    builder: (context) => const order_page(),
+                    builder: (context) => order_page(user: widget.user),
                     fullscreenDialog: true,
                   ))
                   .then((_) => setState(() {}));

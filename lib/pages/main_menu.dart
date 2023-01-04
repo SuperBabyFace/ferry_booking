@@ -51,7 +51,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
   Widget build(BuildContext context) {
     // List of bottom nav bar page
     final List<Widget> _widgetOptions = <Widget>[
-      order_page(),
+      order_page(user: widget.user),
       displayFerryBooking(user: widget.user),
       SettingPage(),
     ];
